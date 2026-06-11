@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prueba de Usabilidad — Shopinbaz</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark: #0a7a38;
+    --green-mid: #0f9e4a;
+    --green-light: #1db954;
+    --green-pale: #e8f5e9;
+    --green-accent: #a7f3d0;
+    --red: #dc2626;
+    --red-pale: #fce8e8;
+    --amber: #d97706;
+    --amber-pale: #fff3e0;
+    --text: #111827;
+    --text-mid: #374151;
+    --text-muted: #6b7280;
+    --text-faint: #9ca3af;
+    --bg: #f9fafb;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --border-mid: #d1d5db;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+
+  .page { max-width: 800px; margin: 0 auto; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 50%, var(--green-light) 100%);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: 35%;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.6rem;
+  }
+  .hero-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    max-width: 460px;
+  }
+  .hero-badge {
+    display: inline-block;
+    margin-top: 1.25rem;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 2rem 0 0.875rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* PARTICIPANTS */
+  .participants { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 0.5rem; }
+  .participant-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.125rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .participant-dot {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .dot-a { background: var(--green-pale); color: var(--green-dark); }
+  .dot-b { background: #e3f2fd; color: #1565c0; }
+  .participant-info {}
+  .participant-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-faint); }
+  .participant-names { font-size: 14px; font-weight: 600; color: var(--text); }
+  .participant-count { font-size: 12px; color: var(--text-muted); }
+
+  /* FINDING CARD */
+  .finding {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .finding-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 1.125rem 1.375rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .finding-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 3px;
+  }
+  .finding-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    max-width: 520px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-alto { background: var(--red-pale); color: var(--red); }
+  .badge-medio { background: var(--amber-pale); color: var(--amber); }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  .finding-body { padding: 1.125rem 1.375rem; }
+
+  /* METRICS */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 1.125rem; }
+  .metric {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.875rem 1rem;
+    text-align: center;
+  }
+  .metric-val { font-size: 26px; font-weight: 800; color: var(--green-mid); letter-spacing: -1px; }
+  .metric-val.red { color: var(--red); }
+  .metric-label { font-size: 11px; color: var(--text-muted); margin-top: 3px; line-height: 1.35; }
+
+  /* BARS */
+  .bar-group { margin-bottom: 0.5rem; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .bar-label { font-size: 12px; color: var(--text-muted); width: 100px; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; background: var(--border); border-radius: 4px; height: 20px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 11px; font-weight: 700; color: #fff; min-width: 32px; transition: width 0.4s; }
+  .bar-green { background: var(--green-mid); }
+  .bar-red { background: var(--red); }
+  .bar-amber { background: #f59e0b; }
+
+  /* MEANING */
+  .meaning {
+    background: var(--green-pale);
+    border-left: 3px solid var(--green-mid);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 0.75rem 1rem;
+    margin-top: 0.875rem;
+  }
+  .meaning p { font-size: 13px; color: #1b5e20; line-height: 1.55; }
+
+  /* QUOTES */
+  .quote {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-mid);
+    padding: 0.5rem 0.875rem;
+    border-left: 2px solid var(--border-mid);
+    margin: 6px 0;
+    line-height: 1.5;
+  }
+
+  /* STATUS CHECKS */
+  .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 0.875rem; }
+  .status-item { display: flex; align-items: flex-start; gap: 7px; font-size: 13px; color: var(--text-mid); line-height: 1.4; }
+  .ok { color: var(--green-mid); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .no { color: var(--red); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  /* COMPARE TABLE */
+  .compare-wrap { overflow-x: auto; margin-top: 0.875rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  tbody td {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-align: center;
+  }
+  tbody td.label-col { text-align: left; color: var(--text-muted); }
+  .val-g { color: var(--green-mid); font-weight: 700; }
+  .val-r { color: var(--red); font-weight: 700; }
+
+  /* COMPARE BARS SIDE BY SIDE */
+  .side-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 0.875rem; }
+  .side-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tag { display: inline-block; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; }
+  .tag-a { background: var(--green-pale); color: var(--green-dark); }
+  .tag-b { background: #e3f2fd; color: #1565c0; }
+
+  /* SUMMARY */
+  .summary {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-top: 1rem;
+  }
+  .summary-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 1.125rem; letter-spacing: -0.5px; }
+  .summary-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .summary-col {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-sm);
+    padding: 1.125rem;
+  }
+  .summary-col-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.875rem;
+  }
+  .summary-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.88); margin-bottom: 8px; line-height: 1.45; }
+  .s-ok { color: #a7f3d0; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .s-no { color: #fca5a5; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  /* FOOTER */
+  .footer { text-align: center; margin-top: 2.5rem; padding: 1.5rem 0; }
+  .footer-logo { font-size: 28px; font-weight: 800; color: var(--text-muted); letter-spacing: -1px; }
+  .footer-logo span { color: var(--green-mid); }
+  .footer-tagline { font-size: 14px; color: var(--text-faint); margin-top: 4px; }
+
+  @media (max-width: 580px) {
+    .hero-title { font-size: 26px; }
+    .participants { grid-template-columns: 1fr; }
+    .summary-cols { grid-template-columns: 1fr; }
+    .side-grid { grid-template-columns: 1fr; }
+    .status-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Prueba de usabilidad · Shopinbaz</div>
+    <div class="hero-title">Refinanciamiento<br>Botón de pago</div>
+    <div class="hero-sub">Hallazgos de comprensión del bono de regalo</div>
+    <div class="hero-badge">N = 4 usuarios · Junio 2025</div>
+  </div>
+
+  <!-- PARTICIPANTS -->
+  <div class="section-label">Participantes</div>
+  <div class="participants">
+    <div class="participant-card">
+      <div class="participant-dot dot-a">A</div>
+      <div class="participant-info">
+        <div class="participant-label">Opción A</div>
+        <div class="participant-names">Sergio y Gisela</div>
+        <div class="participant-count">n = 2 usuarios</div>
+      </div>
+    </div>
+    <div class="participant-card">
+      <div class="participant-dot dot-b">B</div>
+      <div class="participant-info">
+        <div class="participant-label">Opción B</div>
+        <div class="participant-names">Pedro y Sofía</div>
+        <div class="participant-count">n = 2 usuarios</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDINGS -->
+  <div class="section-label">Hallazgos</div>
+
+  <!-- H1 -->
+  <div class="finding">
+    <div class="finding-header">
+      <div>
+        <div class="finding-num">Hallazgo 1</div>
+        <div class="finding-title">La Opción A comunica mejor que el bono ya fue aplicado</div>
+      </div>
+      <span class="badge badge-alto"><span class="badge-dot"></span>Alto</span>
+    </div>
+    <div class="finding-body">
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-val">100%</div><div class="metric-label">Opción A entendió el bono aplicado</div></div>
+        <div class="metric"><div class="metric-val red">50%</div><div class="metric-label">Opción B sin dudas</div></div>
+        <div class="metric"><div class="metric-val">100%</div><div class="metric-label">Opción A notó el bono primero</div></div>
+        <div class="metric"><div class="metric-val red">0%</div><div class="metric-label">Opción B notó el bono primero</div></div>
+      </div>
+      <div class="meaning"><p>La ubicación del mensaje tiene un impacto directo en la comprensión. Cuando el bono aparece como un elemento independiente y visible, los usuarios lo interpretan como una acción completada.</p></div>
+    </div>
+  </div>
+
+  <!-- H2 -->
+  <div class="finding">
+    <div class="finding-header">
+      <div>
+        <div class="finding-num">Hallazgo 2</div>
+        <div class="finding-title">Los usuarios entienden que existe un bono, pero no cuánto ahorraron</div>
+      </div>
+      <span class="badge badge-alto"><span class="badge-dot"></span>Alto</span>
+    </div>
+    <div class="finding-body">
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-val">100%</div><div class="metric-label">Identificaron un beneficio</div></div>
+        <div class="metric"><div class="metric-val red">0%</div><div class="metric-label">Explicaron el ahorro</div></div>
+        <div class="metric"><div class="metric-val red">75%</div><div class="metric-label">Dudas sobre impacto económico</div></div>
+      </div>
+      <div class="quote">"No me queda claro si bajó el precio."</div>
+      <div class="quote">"Entiendo que aplicaron algo, pero no sé cuánto."</div>
+      <div class="status-grid">
+        <div class="status-item"><span class="ok">✓</span> Existe un bono</div>
+        <div class="status-item"><span class="no">✗</span> Cuánto vale el bono</div>
+        <div class="status-item"><span class="no">✗</span> Cuánto ahorró el usuario</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- H3 -->
+  <div class="finding">
+    <div class="finding-header">
+      <div>
+        <div class="finding-num">Hallazgo 3</div>
+        <div class="finding-title">Ganar un nuevo bono genera más emoción que utilizar uno existente</div>
+      </div>
+      <span class="badge badge-medio"><span class="badge-dot"></span>Medio-Alto</span>
+    </div>
+    <div class="finding-body">
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-val">100%</div><div class="metric-label">Nuevo bono = momento más positivo</div></div>
+        <div class="metric"><div class="metric-val red">25%</div><div class="metric-label">Canje = momento memorable</div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-row">
+          <div class="bar-label">Ganar bono</div>
+          <div class="bar-track"><div class="bar-fill bar-green" style="width:100%">100%</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Canjear bono</div>
+          <div class="bar-track"><div class="bar-fill bar-amber" style="width:25%">25%</div></div>
+        </div>
+      </div>
+      <div class="meaning"><p>Canjear un bono = algo esperado. Ganar un bono = una recompensa adicional.</p></div>
+    </div>
+  </div>
+
+  <!-- H4 -->
+  <div class="finding">
+    <div class="finding-header">
+      <div>
+        <div class="finding-num">Hallazgo 4</div>
+        <div class="finding-title">La confusión entre ganar y canjear aparece cuando el canje no es suficientemente visible</div>
+      </div>
+      <span class="badge badge-alto"><span class="badge-dot"></span>Alto</span>
+    </div>
+    <div class="finding-body">
+      <div class="compare-wrap">
+        <table>
+          <thead>
+            <tr><th>Métrica</th><th>Opción A</th><th>Opción B</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="label-col">Diferenció correctamente ganar vs canjear</td><td class="val-g">100%</td><td class="val-r">50%</td></tr>
+            <tr><td class="label-col">Mostró confusión</td><td class="val-g">0%</td><td class="val-r">50%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="meaning"><p>Los usuarios no se confunden por el concepto de bono. Se confunden porque no tienen claro cuándo se utilizó el bono existente.</p></div>
+    </div>
+  </div>
+
+  <!-- H5 -->
+  <div class="finding">
+    <div class="finding-header">
+      <div>
+        <div class="finding-num">Hallazgo 5</div>
+        <div class="finding-title">El mensaje "Bono de regalo aplicado" es entendible, pero insuficiente</div>
+      </div>
+      <span class="badge badge-alto"><span class="badge-dot"></span>Alto</span>
+    </div>
+    <div class="finding-body">
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-val">100%</div><div class="metric-label">Asociaron el mensaje con un beneficio</div></div>
+        <div class="metric"><div class="metric-val red">75%</div><div class="metric-label">No describieron el beneficio económico</div></div>
+        <div class="metric"><div class="metric-val red">50%</div><div class="metric-label">Tuvieron que inferir el precio</div></div>
+      </div>
+      <div class="status-grid">
+        <div class="status-item"><span class="ok">✓</span> Se realizó una acción</div>
+        <div class="status-item"><span class="no">✗</span> Qué cambió</div>
+        <div class="status-item"><span class="no">✗</span> Cuál fue el beneficio obtenido</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- H6 -->
+  <div class="finding">
+    <div class="finding-header">
+      <div>
+        <div class="finding-num">Hallazgo 6</div>
+        <div class="finding-title">El precio domina la atención cuando el bono tiene poca jerarquía visual</div>
+      </div>
+      <span class="badge badge-alto"><span class="badge-dot"></span>Alto</span>
+    </div>
+    <div class="finding-body">
+      <div class="side-grid">
+        <div>
+          <div class="side-label"><span class="tag tag-a">A</span> Primer elemento observado</div>
+          <div class="bar-row">
+            <div class="bar-label">Bono aplicado</div>
+            <div class="bar-track"><div class="bar-fill bar-green" style="width:100%">100%</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Precio</div>
+            <div class="bar-track"><div class="bar-fill bar-red" style="width:4%;min-width:34px">0%</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="side-label"><span class="tag tag-b">B</span> Primer elemento observado</div>
+          <div class="bar-row">
+            <div class="bar-label">Precio</div>
+            <div class="bar-track"><div class="bar-fill bar-red" style="width:100%">100%</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Bono aplicado</div>
+            <div class="bar-track"><div class="bar-fill bar-green" style="width:4%;min-width:34px">0%</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="meaning"><p>Cuando el mensaje compite con el precio, pierde efectividad. La comprensión del beneficio depende directamente de su visibilidad.</p></div>
+    </div>
+  </div>
+
+  <!-- H7 -->
+  <div class="finding">
+    <div class="finding-header">
+      <div>
+        <div class="finding-num">Hallazgo 7</div>
+        <div class="finding-title">Los usuarios necesitan una confirmación explícita del ahorro</div>
+      </div>
+      <span class="badge badge-alto"><span class="badge-dot"></span>Alto</span>
+    </div>
+    <div class="finding-body">
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-val">100%</div><div class="metric-label">Entendieron que existe un beneficio</div></div>
+        <div class="metric"><div class="metric-val red">0%</div><div class="metric-label">Pudieron cuantificarlo</div></div>
+        <div class="metric"><div class="metric-val">100%</div><div class="metric-label">Más certeza si se mostrara el monto</div></div>
+      </div>
+      <div class="meaning"><p>El principal problema no es la comprensión del bono, sino la ausencia de evidencia tangible del ahorro.</p></div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="summary-title">Resumen ejecutivo</div>
+    <div class="summary-cols">
+      <div class="summary-col">
+        <div class="summary-col-title">Lo que funciona</div>
+        <div class="summary-item"><span class="s-ok">✓</span> 100% entendió que existe un beneficio</div>
+        <div class="summary-item"><span class="s-ok">✓</span> 100% valoró recibir un bono nuevo después de comprar</div>
+        <div class="summary-item"><span class="s-ok">✓</span> Opción A logró 100% de comprensión del canje</div>
+      </div>
+      <div class="summary-col">
+        <div class="summary-col-title">Lo que no funciona</div>
+        <div class="summary-item"><span class="s-no">✗</span> 0% pudo indicar cuánto dinero ahorró</div>
+        <div class="summary-item"><span class="s-no">✗</span> 50% de Opción B confundió ganar y canjear</div>
+        <div class="summary-item"><span class="s-no">✗</span> El mensaje pierde visibilidad cuando comparte espacio con el precio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo"><span>UIX</span> studio</div>
+    <div class="footer-tagline">¡Gracias!</div>
+  </div>
+
+</div>
+</body>
+</html>
